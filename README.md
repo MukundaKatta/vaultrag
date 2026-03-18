@@ -1,100 +1,45 @@
 # VaultRAG
 
-Enterprise Retrieval-Augmented Generation platform with document ingestion, vector search, chat, and evaluation tools.
+Work-in-progress RAG (Retrieval-Augmented Generation) application. Currently an initial scaffold with backend API structure and minimal frontend.
 
-## Features
+## What's Here
 
-- **Knowledge Bases** -- Create and manage isolated document collections
-- **Document Ingestion** -- Upload and process documents with configurable chunking strategies
-- **Vector Search** -- Semantic search across knowledge bases with embedding-powered retrieval
-- **RAG Chat** -- Conversational AI with grounded answers from your documents
-- **Query Rewriting** -- Intelligent query expansion for improved retrieval
-- **Chunking Lab** -- Experiment with different text splitting strategies
-- **Evaluation Suite** -- Measure retrieval quality and answer accuracy
-- **Permission Management** -- Role-based access control for knowledge bases
-- **Authentication** -- Secure login with JWT-based auth
+**Backend (Python/FastAPI):**
+- FastAPI app with route stubs for auth, knowledge bases, documents, chat, search, evaluation, and chunking
+- Supabase integration (PostgreSQL + pgvector) for data storage
+- Dependencies for OpenAI, Cohere, sentence-transformers, and BM25 ranking
+- JWT-based auth setup with passlib/python-jose
+- Celery + Redis task queue configuration
+- Supabase migration SQL file
+
+**Frontend (Next.js/TypeScript):**
+- Next.js 14 App Router scaffold with Tailwind CSS
+- Login page and dashboard page structure
+- Single Sidebar component
+- Basic project configuration (tsconfig, postcss, tailwind)
 
 ## Tech Stack
 
-### Backend
-- **Framework:** FastAPI (Python)
-- **Database:** Supabase (PostgreSQL + pgvector)
-- **Embeddings:** OpenAI / custom embedding models
-- **Search:** Vector similarity search with pgvector
+- **Backend:** FastAPI, Supabase, OpenAI, Cohere, sentence-transformers, rank-bm25
+- **Frontend:** Next.js 14, TypeScript, Tailwind CSS
+- **Infrastructure:** Celery, Redis
 
-### Frontend
-- **Framework:** Next.js 14 (App Router)
-- **Language:** TypeScript
-- **Styling:** Tailwind CSS
-- **Charts:** Recharts
-- **File Upload:** React Dropzone
-- **Markdown:** React Markdown
-- **State Management:** Zustand
-- **Icons:** Lucide React
+## Status
 
-## Getting Started
+This is an early-stage scaffold generated with AI assistance. The backend route structure is in place but the frontend is minimal (one component). Not yet functional as a complete application.
 
-### Prerequisites
-
-- Node.js 18+
-- Python 3.10+
-- npm or yarn
-
-### Backend Setup
+## Setup
 
 ```bash
+# Backend
 cd backend
-python -m venv venv
-source venv/bin/activate
 pip install -r requirements.txt
 uvicorn app.main:app --reload --port 8000
-```
 
-### Frontend Setup
-
-```bash
+# Frontend
 cd frontend
 npm install
 npm run dev
 ```
 
-### Environment Variables
-
-Backend `.env`:
-```env
-SUPABASE_URL=your_supabase_url
-SUPABASE_SERVICE_KEY=your_service_key
-FRONTEND_URL=http://localhost:3000
-```
-
-Frontend `.env.local`:
-```env
-NEXT_PUBLIC_API_URL=http://localhost:8000
-```
-
-Open [http://localhost:3000](http://localhost:3000) in your browser.
-
-## Project Structure
-
-```
-vaultrag/
-├── backend/
-│   ├── app/
-│   │   ├── api/routes/       # FastAPI route handlers
-│   │   ├── core/             # Config, database, auth
-│   │   ├── models/           # Pydantic schemas
-│   │   └── services/         # Business logic
-│   └── main.py               # FastAPI entry point
-├── frontend/
-│   ├── src/
-│   │   ├── app/              # Next.js App Router pages
-│   │   │   └── dashboard/    # Main application views
-│   │   ├── components/       # React components
-│   │   └── lib/              # API client, store, types
-│   └── package.json
-└── README.md
-```
-
-## License
-
-MIT
+Requires Supabase project and API keys configured in .env files. See .env.example files for required variables.
